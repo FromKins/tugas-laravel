@@ -1,0 +1,147 @@
+/*
+SQLyog Community v10.51 
+MySQL - 5.5.5-10.1.25-MariaDB : Database - db_ujikom
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_ujikom` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `db_ujikom`;
+
+/*Table structure for table `tbl_barang` */
+
+DROP TABLE IF EXISTS `tbl_barang`;
+
+CREATE TABLE `tbl_barang` (
+  `kode_barang` int(50) NOT NULL,
+  `nama_barang` varchar(50) DEFAULT NULL,
+  `id_jenis` int(50) DEFAULT NULL,
+  `model_barang` varchar(50) DEFAULT NULL,
+  `spesifikasi` varchar(50) DEFAULT NULL,
+  `daftar_barang` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`kode_barang`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_barang` */
+
+/*Table structure for table `tbl_inventaris` */
+
+DROP TABLE IF EXISTS `tbl_inventaris`;
+
+CREATE TABLE `tbl_inventaris` (
+  `no_inventaris` int(50) NOT NULL,
+  `kode_barang` int(50) DEFAULT NULL,
+  `nama_barang` varchar(50) DEFAULT NULL,
+  `id_jenis` int(50) DEFAULT NULL,
+  `no_seri` int(50) DEFAULT NULL,
+  `spesifikasi` varchar(50) DEFAULT NULL,
+  `kondisi_barang` varchar(50) DEFAULT NULL,
+  `harga_barang` int(50) DEFAULT NULL,
+  `tgl_masuk` date DEFAULT NULL,
+  `id_pengguna` int(3) DEFAULT NULL,
+  `jumlah` int(50) DEFAULT NULL,
+  PRIMARY KEY (`no_inventaris`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_inventaris` */
+
+/*Table structure for table `tbl_jenis_barang` */
+
+DROP TABLE IF EXISTS `tbl_jenis_barang`;
+
+CREATE TABLE `tbl_jenis_barang` (
+  `id_jenis` int(50) NOT NULL,
+  `jenis` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_jenis`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_jenis_barang` */
+
+/*Table structure for table `tbl_pemakai` */
+
+DROP TABLE IF EXISTS `tbl_pemakai`;
+
+CREATE TABLE `tbl_pemakai` (
+  `nip` int(50) NOT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `alamat` varchar(50) DEFAULT NULL,
+  `nohp` int(50) DEFAULT NULL,
+  `id_unit` int(50) DEFAULT NULL,
+  PRIMARY KEY (`nip`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_pemakai` */
+
+/*Table structure for table `tbl_pemakaian` */
+
+DROP TABLE IF EXISTS `tbl_pemakaian`;
+
+CREATE TABLE `tbl_pemakaian` (
+  `id_pakai` int(50) NOT NULL,
+  `nip` int(50) DEFAULT NULL,
+  `no_inventaris` int(50) DEFAULT NULL,
+  `tempat_ruangan` varchar(50) DEFAULT NULL,
+  `kondisi` varchar(50) DEFAULT NULL,
+  `tgl_mulai_pakai` date DEFAULT NULL,
+  `id_pengguna` int(3) DEFAULT NULL,
+  PRIMARY KEY (`id_pakai`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_pemakaian` */
+
+/*Table structure for table `tbl_pengajuan` */
+
+DROP TABLE IF EXISTS `tbl_pengajuan`;
+
+CREATE TABLE `tbl_pengajuan` (
+  `no_pengajuan` int(50) NOT NULL,
+  `nip` int(50) DEFAULT NULL,
+  `kode_barang` int(50) DEFAULT NULL,
+  `jumlah_pengajuan` int(50) DEFAULT NULL,
+  `harga_perkiraan` int(50) DEFAULT NULL,
+  `tgl_pengajuan` date DEFAULT NULL,
+  `id_pengguna` int(3) DEFAULT NULL,
+  PRIMARY KEY (`no_pengajuan`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_pengajuan` */
+
+/*Table structure for table `tbl_pengguna` */
+
+DROP TABLE IF EXISTS `tbl_pengguna`;
+
+CREATE TABLE `tbl_pengguna` (
+  `id_pengguna` int(50) NOT NULL,
+  `nama_pengguna` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `level` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_pengguna`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_pengguna` */
+
+/*Table structure for table `tbl_unit_kerja` */
+
+DROP TABLE IF EXISTS `tbl_unit_kerja`;
+
+CREATE TABLE `tbl_unit_kerja` (
+  `id_unit` int(50) NOT NULL,
+  `unit` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_unit`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_unit_kerja` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
